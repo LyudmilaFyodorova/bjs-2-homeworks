@@ -91,13 +91,12 @@ function makeWork (arrOfArr, func) {
   let maxWorkerResult = -Infinity;
 
   for (let i = 0; i < arrOfArr.length; i++){
-    arrOfArr.push(arrOfArr[i]);
-
-    const funcResult =
-  }
+    const funcResult = func(...arrOfArr[i]);
 
   if (funcResult > maxWorkerResult) {
-    let maxWorkerResult = funcResult;
+    maxWorkerResult = funcResult;
   }
+}
+    return maxWorkerResult;
 }
 
