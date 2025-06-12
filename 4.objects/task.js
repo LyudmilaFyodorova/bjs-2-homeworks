@@ -10,21 +10,17 @@ Student.prototype.setSubject = function(subjectName) {
 }
 
 Student.prototype.addMarks = function(...marks) {
-	if (Student.hasOwnProperty("marks") === true) {
-		this.marks.push(...marksToAdd);
+	if (this.marks) {
+	  this.marks.push(...marks);
 	}
 }
 
 Student.prototype.getAverage = function() {
-	if (Student.hasOwnProperty("marks") === false) {
+	if(!this.marks || this.marks.length === 0) {
 		return 0;
 	}
 
-	let sum = 0;
-	for (let i = 0; i < this.marks.length; i++) {
-		sum += this.marks[i];
-	}
-	return sum / this.marks.length;
+	return this.marks.reduce((accumulator, item) => accumulator + item / this.marks.length);
 }
 
 Student.prototype.exclude = function(reason) {
