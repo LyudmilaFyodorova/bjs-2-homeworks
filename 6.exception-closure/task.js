@@ -16,12 +16,12 @@ function validateCount(number) {
 }
 
 class Triangle {
-    constructor(firstSide, secondSide, thirdSide) {
-        this.firstSide = firstSide;
-        this.secondSide = secondSide;
-        this.thirdSide = thirdSide;
+    constructor(a, b, c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
 
-        if ((firstSide + secondSide) < thirdSide) {
+        if ((a + b <= c) || (b + c <= a) || (a + c <= b)) {
             throw new Error("Треугольник с такими сторонами не существует");
         }
     }
@@ -29,18 +29,18 @@ class Triangle {
 
 
     get perimeter() {
-        let perimeter = firstSide + secondSide + thirdSide;
-        return perimeter.toFixed(3);
+        let perimeter = a + b + c;
+        return Number(perimeter.toFixed(3));
     }
 
     get area() {
         let halfPerimeter = this.perimeter / 2;
-        let area = Math.sqrt(halfPerimeter * (halfPerimeter - firstSide) * (halfPerimeter - secondSide) * (halfPerimeter - thirdSide));
-        return area.toFixed(3);
+        let area = Math.sqrt(halfPerimeter * (halfPerimeter - a) * (halfPerimeter - b) * (halfPerimeter - c));
+        return Number(area.toFixed(3));
     }
 }
 
-function getTriangle(firstSide, secondSide, thirdSide) {
+function getTriangle(a, b, c) {
     try {
         return new Triangle();
     } catch (error) {
