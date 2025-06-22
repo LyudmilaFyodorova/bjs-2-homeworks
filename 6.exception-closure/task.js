@@ -26,8 +26,7 @@ class Triangle {
     }
 
     get perimeter() {
-        const perimeter = this.a + this.b + this.c;
-        return Number(perimeter);
+        return this.a + this.b + this.c;
     }
 
     get area() {
