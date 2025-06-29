@@ -86,12 +86,12 @@ class Library {
 	giveBookByName(bookName) {
 		for (let i = 0; i < this.books.length; i++) {
 			if (this.books[i].name === bookName) {
-				this.books.splice(0, 1, bookName);
-				return this.books[i];
-			} else {
-				return null;
+				let foundBook = this.books[i];
+				this.books.splice(i, 1);
+				return foundBook;
 			}
 		}
+		return null;
 	}
 }
 
@@ -122,7 +122,7 @@ function getAverageBySubject(subjectName) {
 	return Number((this.marks.subjectName.reduce((accumulator, item) => accumulator + item, 0) / this.marks.subjectName.length).toFixed(2))
 }
 
-function getAverage(){
+function getAverage() {
 	Object.keys(this.marks.subjectName);
 	this.sum = 0;
 	for (let i = 0; i < this.marks.subjectName.length; i++) {
