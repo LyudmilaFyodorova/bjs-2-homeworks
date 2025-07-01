@@ -21,18 +21,22 @@ class AlarmClock {
     }
 
     getCurrentFormattedTime() {
-        let now = new Date();
+        return new Date().toLocaleTimeString("ru-Ru",
+            {
+                hour: "2-digit",
+                minute: "2-digit",
+            });
 
     }
 
     start() {
-        if (this.intervalId !== 0) {
+        if (this.intervalId !== null) {
             return
         }
 
         this.intervalId = setInterval(() => this.alarmCollection.forEach((element) => {
-            if ((element.time === currentTime) && (element.canCall === true)) {
-                this.alarmCollection.canCall = false;
+            if ((element.time === this.getCurrentFormattedTime()) && (element.canCall === true)) {
+                element.canCall = false;
                 element.callback();
             }
         }
