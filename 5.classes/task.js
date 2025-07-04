@@ -98,36 +98,36 @@ class Library {
 class Student {
 	constructor(name) {
 		this.name = name;
-		this.marks = { subjectName: [] };
-	}
-}
-
-function addMark(mark, subjectName) {
-	if (mark >= 2 && mark <= 5) {
-		this.marks.subjectName.push(mark);
-	} else {
-		return;
+		this.marks = {};
 	}
 
-	if (!this.marks.subjectName) {
-		this.marks.subjectName = [];
-	}
-}
+	addMark(mark, subjectName) {
+		if (mark < 2 || mark > 5) {
+			return;
+		}
 
-function getAverageBySubject(subjectName) {
-	if (!this.marks.subjectName) {
-		return null;
-	}
+		if (!this.marks[subjectName]) {
+			this.marks[subjectName] = [];
+		}
 
-	return Number((this.marks.subjectName.reduce((accumulator, item) => accumulator + item, 0) / this.marks.subjectName.length).toFixed(2))
-}
-
-function getAverage() {
-	Object.keys(this.marks.subjectName);
-	this.sum = 0;
-	for (let i = 0; i < this.marks.subjectName.length; i++) {
-		this.sum += getAverageBySubject(subjectName);
+		this.marks[subjectName].push(mark);
 	}
 
-	return this.sum / this.marks.subjectName.length;
+	getAverageBySubject(subjectName) {
+		if (!this.marks[subjectName]) {
+			return null;
+		}
+
+		return Number((this.marks[subjectName].reduce((accumulator, item) => accumulator + item, 0) / this.marks[subjectName].length).toFixed(2))
+	}
+
+	getAverage() {
+		let allSubjects = Object.keys(this.marks);
+		this.sum = 0;
+		for (let i = 0; i < allSubjects.length; i++) {
+			this.sum += getAverageBySubject(subjectName);
+		}
+
+		return this.sum / allSubjects.length; 
+	}
 }
