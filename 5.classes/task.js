@@ -115,7 +115,7 @@ class Student {
 
 	getAverageBySubject(subjectName) {
 		if (!this.marks[subjectName]) {
-			return null;
+			return 0;
 		}
 
 		return Number((this.marks[subjectName].reduce((accumulator, item) => accumulator + item, 0) / this.marks[subjectName].length).toFixed(2))
@@ -123,11 +123,16 @@ class Student {
 
 	getAverage() {
 		let allSubjects = Object.keys(this.marks);
-		this.sum = 0;
-		for (let i = 0; i < allSubjects.length; i++) {
-			this.sum += getAverageBySubject(subjectName);
+
+		if (allSubjects.length === 0) {
+			return 0;
 		}
 
-		return this.sum / allSubjects.length; 
+		this.sum = 0;
+		for (let i = 0; i < allSubjects.length; i++) {
+			this.sum += this.getAverageBySubject(allSubjects[i]);
+		}
+
+		return this.sum / allSubjects.length;
 	}
 }
